@@ -1,0 +1,228 @@
+body {
+  background-color: #ebf1ff;
+  margin: 10px;
+}
+
+/* Buttons
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5em 1em;
+  background-color: #ffffff; 
+  color: #2b3674;
+  border-radius: 20px;
+  border: 1px solid #bbb;
+  cursor: pointer;
+  position: normal;
+  overflow: hidden;
+  text-decoration: none;
+  width: 220px; 
+  height: 60px;
+}
+
+.button2,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button2"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5em 1em;
+  background-color: #ffffff; 
+  color: #2b3674;
+  border-radius: 20px;
+  border: 1px solid #bbb;
+  cursor: pointer;
+  position: normal;
+  overflow: hidden;
+  text-decoration: none;
+  width: 240px; 
+  height: 60px;
+}
+
+.button:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+.button:focus,
+button:focus,
+input[type="submit"]:focus,
+input[type="reset"]:focus,
+input[type="button"]:focus {
+  color: #FFF;
+  border-color: #888;
+  background: #2D9CDB;
+  outline: 0;
+}
+.button.button-primary,
+button.button-primary,
+input[type="submit"].button-primary,
+input[type="reset"].button-primary,
+input[type="button"].button-primary {
+  color: #fff;
+  background-color: #33c3f0;
+  border-color: #33c3f0;
+}
+.button.button-primary:hover,
+button.button-primary:hover,
+input[type="submit"].button-primary:hover,
+input[type="reset"].button-primary:hover,
+input[type="button"].button-primary:hover,
+.button.button-primary:focus,
+button.button-primary:focus,
+input[type="submit"].button-primary:focus,
+input[type="reset"].button-primary:focus,
+input[type="button"].button-primary:focus {
+  color: #fff;
+  background-color: #1eaedb;
+  border-color: #1eaedb;
+}
+
+.Select-control, .Select-menu-outer, .Select-multi-value-wrapper, .select-up, .is-open .Select-control {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+
+}
+
+.Select-control{
+  border: 0.5px solid rgb(85, 69, 208);
+}
+
+.has-value.Select--single>.Select-control .Select-value .Select-value-label, .has-value.is-pseudo-focused.Select--single>.Select-control .Select-value .Select-value-label {
+  color: rgb(0, 0, 0);
+}
+
+.date-range {
+  background-color: #ffffff;
+  height: 60px;
+  width: 1565px;
+  margin-top: 10px;
+  margin-left: 24px;
+  margin-right: 24px;
+  width: auto;
+  border-radius: 20px 20px 0px 0px;
+ }
+
+ 
+.date-range-row2 {
+  background-color: #ffffff;
+  height: 60px;
+  width: 1565px;
+  /* margin-top: 24px; */
+  margin-left: 24px;
+  margin-right: 24px;
+  width: auto;
+  align-items: center;
+  border-radius: 0px 0px 20px 20px;
+ }
+
+ .date-range-row3_2 {
+  background-color: #ffffff;
+  height: 50px;
+  width: 1565px;
+  /* margin-top: 24px; */
+  margin-left: 24px;
+  margin-right: 24px;
+  width: auto;
+  align-items: center;
+  border-radius: 0px 0px 20px 20px;
+ }
+
+ .date-range-row3 {
+  background-color: #ffffff;
+  height: 50px;
+  width: 1565px;
+  margin-top: 8px; 
+  margin-left: 24px;
+  margin-right: 24px;
+  width: auto;
+  align-items: center;
+  border-radius: 20px 20px 0px 0px;
+ }
+
+ /* label > .label-body {
+  display: inline-block;
+  margin-left: 0.5rem;
+  font-weight: normal;
+} */
+
+ .label {
+ display: inline-flex;
+ margin-left: 20px;
+ margin-top: 20px;
+ height: 26px;
+ width: 155px;
+ font-family: "Poppins-Bold", Helvetica;
+ font-weight: 700;
+ /* line-height: 26px; */
+ font-size: 18px;
+ color: #2b3674;
+
+}
+
+
+.DateInput, .DateInput_1 {
+  border-radius: 4px 0 0 4px !important;
+}
+
+.DateInput_input, .DateInput_input_1 {
+  Height: 34px !important;
+  Width: 100% !important;
+  border-radius: inherit;
+}
+
+.SingleDatePickerInput__withBorder {
+  border-radius: 4px 0 0 4px;
+  border: 1px solid #ccc !important;
+}
+
+.button_label
+{
+color: #2b3674;
+font-family: Helvetica;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: 32px;
+letter-spacing: -0.48px;
+margin-left: 24px;
+}
+
+.button_label2
+{
+color: #2b3674;
+font-family: Helvetica;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: 32px;
+letter-spacing: -0.48px;
+margin-left: 24px;
+text-transform: uppercase;
+}
+
+
+/* restyle radio items */
+.radio-group .form-check {
+  padding-left: 0;
+ 
+}
+
+.radio-group .btn-group > .form-check:not(:last-child) > .btn {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.radio-group .btn-group > .form-check:not(:first-child) > .btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-left: -1px;
+}

@@ -1,0 +1,382 @@
+.main-dashboard {
+  background-color: #f4f7fe;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.main-dashboard .div {
+  background-color: var(--secondarygrey-300);
+  height: 1732px;
+  position: relative;
+  width: 1920px;
+}
+
+.main-dashboard .revenue {
+  background-color: #2d9cdb;
+  border-radius: 20px;
+  height: 97px;
+  left: 311px;
+  overflow: hidden;
+  position: absolute;
+  top: 45px;
+  width: 248px;
+}
+
+.main-dashboard .text {
+  height: 31px;
+  left: 95px;
+  position: absolute;
+  top: 32px;
+  width: 106px;
+}
+
+.main-dashboard .cash {
+  color: #ffffff;
+  font-family: "DM Sans-Bold", Helvetica;
+  font-size: 24px;
+  font-weight: 700;
+  left: 0;
+  letter-spacing: -0.48px;
+  line-height: 32px;
+  position: absolute;
+  top: 0;
+  white-space: nowrap;
+  width: 104px;
+}
+
+.main-dashboard .icon {
+  background-color: #f4f7fe;
+  border-radius: 28px;
+  height: 56px;
+  left: 17px;
+  position: absolute;
+  top: 20px;
+  width: 56px;
+}
+
+.main-dashboard .img {
+  height: 33px;
+  left: 12px;
+  position: absolute;
+  top: 12px;
+  width: 33px;
+}
+
+.main-dashboard .overlap {
+  background-color: #ffffff;
+  border-radius: 20px;
+  height: 138px;
+  left: 311px;
+  position: absolute;
+  top: 257px;
+  width: 1565px;
+}
+
+.main-dashboard .station-all {
+  border: 1px solid;
+  border-color: var(--light-gray);
+  border-radius: 10px;
+  height: 45px;
+  left: 38px;
+  position: absolute;
+  top: 69px;
+  width: 299px;
+}
+
+.main-dashboard .text-wrapper {
+  color: var(--blue);
+  font-family: "Roboto-Medium", Helvetica;
+  font-size: 14px;
+  font-weight: 500;
+  left: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 14px;
+  white-space: nowrap;
+}
+
+.main-dashboard .frame {
+  height: 25px;
+  left: 250px;
+  position: absolute;
+  top: 10px;
+  width: 25px;
+}
+
+.main-dashboard .union {
+  height: 16px;
+  left: 7px;
+  position: absolute;
+  top: 5px;
+  width: 11px;
+}
+
+.main-dashboard .text-wrapper-2 {
+  color: #2b3674;
+  font-family: "Poppins-Bold", Helvetica;
+  font-size: 26px;
+  font-weight: 700;
+  left: 38px;
+  letter-spacing: 0;
+  line-height: 26px;
+  position: absolute;
+  top: 22px;
+  white-space: nowrap;
+}
+
+.main-dashboard .revenue-2 {
+  background-color: #ffffff;
+  border-radius: 20px;
+  height: 97px;
+  left: 599px;
+  overflow: hidden;
+  position: absolute;
+  top: 45px;
+  width: 248px;
+}
+
+.main-dashboard .cash-2 {
+  color: #2b3674;
+  font-family: "DM Sans-Bold", Helvetica;
+  font-size: 24px;
+  font-weight: 700;
+  left: 0;
+  letter-spacing: -0.48px;
+  line-height: 32px;
+  position: absolute;
+  top: 0;
+  white-space: nowrap;
+  width: 104px;
+}
+
+.main-dashboard .overlap-group {
+  background-color: #ffffff;
+  border-radius: 20px;
+  height: 79px;
+  left: 311px;
+  position: absolute;
+  top: 165px;
+  width: 1565px;
+}
+
+.main-dashboard .all-faculties {
+  border: 1px solid;
+  border-color: var(--light-gray);
+  border-radius: 10px;
+  height: 45px;
+  left: 239px;
+  position: absolute;
+  top: 18px;
+  width: 299px;
+}
+
+.main-dashboard .text-wrapper-3 {
+  color: #2b3674;
+  font-family: "Poppins-Bold", Helvetica;
+  font-size: 26px;
+  font-weight: 700;
+  left: 28px;
+  letter-spacing: 0;
+  line-height: 26px;
+  position: absolute;
+  top: 22px;
+  white-space: nowrap;
+}
+
+.main-dashboard .overlap-2 {
+  background-color: #ffffff;
+  border-radius: 20px;
+  height: 138px;
+  left: 311px;
+  position: absolute;
+  top: 407px;
+  width: 1565px;
+}
+
+.main-dashboard .x-axis-index {
+  height: 35px;
+  left: 214px;
+  position: absolute;
+  top: 28px;
+  width: 835px;
+}
+
+.main-dashboard .overlap-group-wrapper {
+  height: 35px;
+}
+
+.main-dashboard .overlap-group-2 {
+  height: 35px;
+  position: relative;
+  width: 835px;
+}
+
+.main-dashboard .rectangle {
+  border: 1px solid;
+  border-color: var(--light-gray);
+  border-radius: 10px;
+  height: 35px;
+  left: 277px;
+  position: absolute;
+  top: 0;
+  width: 558px;
+}
+
+.main-dashboard .text-wrapper-4 {
+  color: var(--blue);
+  font-family: "Roboto-Medium", Helvetica;
+  font-size: 14px;
+  font-weight: 500;
+  left: 641px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 9px;
+  width: 90px;
+}
+
+.main-dashboard .group {
+  height: 35px;
+  left: 277px;
+  position: absolute;
+  top: 0;
+  width: 277px;
+}
+
+.main-dashboard .rectangle-2 {
+  background-color: var(--light-gray);
+  border-radius: 10px;
+  height: 37px;
+  left: -1px;
+  position: relative;
+  top: -1px;
+  width: 279px;
+}
+
+.main-dashboard .group-2 {
+  border: 1px solid;
+  border-color: var(--light-gray);
+  border-radius: 10px;
+  height: 35px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 553px;
+}
+
+.main-dashboard .element-years {
+  color: var(--blue);
+  font-family: "Roboto-Medium", Helvetica;
+  font-size: 14px;
+  font-weight: 500;
+  left: 365px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 9px;
+  width: 103px;
+}
+
+.main-dashboard .element-years-2 {
+  color: var(--blue);
+  font-family: "Roboto-Medium", Helvetica;
+  font-size: 14px;
+  font-weight: 500;
+  left: 88px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 9px;
+  width: 103px;
+}
+
+.main-dashboard .y-axis-index {
+  height: 35px;
+  left: 213px;
+  position: absolute;
+  top: 82px;
+  width: 836px;
+}
+
+.main-dashboard .overlap-3 {
+  height: 35px;
+  position: relative;
+}
+
+.main-dashboard .rectangle-3 {
+  border: 1px solid;
+  border-color: var(--light-gray);
+  border-radius: 10px;
+  height: 35px;
+  left: 277px;
+  position: absolute;
+  top: 0;
+  width: 559px;
+}
+
+.main-dashboard .text-wrapper-5 {
+  color: var(--blue);
+  font-family: "Roboto-Medium", Helvetica;
+  font-size: 14px;
+  font-weight: 500;
+  left: 642px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 9px;
+  width: 90px;
+}
+
+.main-dashboard .group-3 {
+  border: 1px solid;
+  border-color: var(--light-gray);
+  border-radius: 10px;
+  height: 35px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 554px;
+}
+
+.main-dashboard .text-wrapper-6 {
+  color: #b0005f;
+  font-family: "Poppins-Bold", Helvetica;
+  font-size: 16px;
+  font-weight: 700;
+  left: 32px;
+  letter-spacing: 0;
+  line-height: 16px;
+  position: absolute;
+  top: 37px;
+  width: 141px;
+}
+
+.main-dashboard .logo {
+  height: 16px;
+  left: 347px;
+  position: fixed;
+  top: 498px;
+  width: 141px;
+}
+
+.main-dashboard .div-wrapper {
+  height: 16px;
+  position: relative;
+  width: 143px;
+}
+
+.main-dashboard .text-wrapper-7 {
+  color: #b0005f;
+  font-family: "Poppins-Bold", Helvetica;
+  font-size: 16px;
+  font-weight: 700;
+  left: 0;
+  letter-spacing: 0;
+  line-height: 16px;
+  position: absolute;
+  top: 0;
+  width: 141px;
+}
