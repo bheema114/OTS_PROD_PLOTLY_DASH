@@ -1,5 +1,6 @@
 window.addEventListener("DOMContentLoaded", function () {
   const pathname = window.location.pathname;
+  
   if (pathname === "/revenue") {
     setBackGroundColor("Revenue");
   } else if (pathname === "/ridership") {
