@@ -1,0 +1,8 @@
+{
+  "db_username": "qrapp",
+  "db_password": "qrappprod321",
+  "db_host": "172.16.200.115",
+  "db_port": "1521",
+  "db_service": "qrapp"
+}
+
