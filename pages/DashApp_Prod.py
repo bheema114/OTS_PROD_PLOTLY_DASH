@@ -38,26 +38,28 @@ app.layout = html.Div([
                     # className="button button_label"
                 )
                 for page in pages
-            ], style={'display': 'flex'})
+            ],
+                style={'display': 'flex'}
+            )
 
         ], width=12),
 
-        # dbc.Col([
+        dbc.Col([
 
-        #     html.Div([
-        #         html.A(
-        #             html.Div([
-        #                 html.Img(src=page['icon_url'], style={
-        #                     'width': '36px', 'height': '36px', 'margin-right': '16px'}),
-        #                 page['name']
-        #             ]),
-        #             href=page['relative_path'],
-        #             className="button2 button_label2"
-        #         )
-        #         for page in pages2
-        #     ]),
+            html.Div([
+                html.A(
+                    html.Div([
+                        html.Img(src=page['icon_url'], style={
+                            'width': '36px', 'height': '36px', 'margin-right': '16px'}),
+                        page['name']
+                    ]),
+                    href=page['relative_path'],
+                    className="button2 button_label2"
+                )
+                for page in pages2
+            ]),
 
-        # ]),
+        ]),
     ], className='hstack'),
     dash.page_container
 ])
