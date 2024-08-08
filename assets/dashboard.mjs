@@ -1,10 +1,19 @@
 window.addEventListener("DOMContentLoaded", function () {
   const pathname = window.location.pathname;
-console.log({pathname})
   if (pathname === "/revenue") {
-    console.log("reve");
-    const btn = document.getElementById("Revenue");
-    console.log(btn);
+    setBackGroundColor("Revenue");
+  } else if (pathname === "/ridership") {
+    setBackGroundColor("Ridership");
+  } else if (pathname === "/stock") {
+    setBackGroundColor("Stock");
+  } else if (pathname === "/hourly") {
+    setBackGroundColor("Hourly Ridership");
   }
-
 });
+
+setBackGroundColor = (id) => {
+  setTimeout(() => {
+    const btn = document.getElementById(id);
+    btn.style.background = "#2D9CDB";
+  }, 1000);
+};
