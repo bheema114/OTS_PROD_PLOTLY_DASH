@@ -163,7 +163,7 @@ class db_connect:
 
         # Execute SQL queries
         sqlcursor = connection.cursor()
-        query_list = ['stock.sql']
+        query_list = ['stock copy.sql']
         dfst = {}
         for query in query_list:
             with open(query, 'r') as file:
@@ -180,7 +180,8 @@ class db_connect:
             if query == query_list[0]:
                 dfst['stock'] = pd.DataFrame(result,columns=['Category',
                                                              'Count',
-                                                             'station_id'
+                                                             'station_id',
+                                                             'product_id'
                                                              ])
         
         sqlcursor.close()   

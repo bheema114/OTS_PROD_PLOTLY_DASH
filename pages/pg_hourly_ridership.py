@@ -5,6 +5,8 @@ import dash_bootstrap_components as dbc
 import plotly.graph_objs as go
 import pandas as pd
 from data import dfr
+from datetime import datetime
+from dash.exceptions import PreventUpdate
 
 dash.register_page(__name__, path='/hourly', name="Hourly Ridership")
 
@@ -36,6 +38,9 @@ for key in dfr.keys():
 for key in dfr.keys():
     dfr[key]['Date'] = pd.to_datetime(dfr[key]['Date'])
 
+
+today_date = datetime.today().strftime('%Y-%m-%d')
+
 layout = html.Div([
     html.Link(rel='stylesheet', href='/assets/ots_styles.css'),
     dbc.Row([
@@ -46,8 +51,10 @@ layout = html.Div([
         dbc.Col([
             dcc.DatePickerRange(
                 id='date-picker-range',
-                start_date=dfr['Ridership']['Date'].min(),
-                end_date=dfr['Ridership']['Date'].max(),
+                # start_date=dfr['Ridership']['Date'].min(),
+                start_date=today_date,
+                # end_date=dfr['Ridership']['Date'].max(),
+                end_date=today_date,
                 display_format='YYYY-MM-DD'
             )
         ], className='hstack', width=4),
@@ -104,11 +111,20 @@ dbc.Row([
      Input('Equipment-id-dropdown', 'value')]
 )
 def update_graph(start_date, end_date, selected_station,selected_equipment):
+    
+    # if start_date is None or end_date is None:
+    #     raise PreventUpdate("Please select valid start and end dates.")
+
+    # if start_date > end_date:
+    #     raise PreventUpdate("Start date must be before or equal to end date.")
+    
     # Filter data based on selected filters
-    ridership_df = dfr['Ridership']  # Assuming the Ridership DataFrame is nested within 'Ridership' key
+    ridership_df = dfr['Ridership'] 
+
+    # ridership_df['Date'] = pd.to_datetime(ridership_df['Date'])
 
     filtered_df = ridership_df[(ridership_df['Date'] >= start_date) & (ridership_df['Date'] <= end_date)]
-
+   
     if selected_station != 'All':
         filtered_df = filtered_df[filtered_df['Station'] == selected_station]
 

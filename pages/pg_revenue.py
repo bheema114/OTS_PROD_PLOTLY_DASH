@@ -1,19 +1,22 @@
 import dash
-from dash import html, dcc , callback
+from dash import html, dcc, callback
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 import plotly.graph_objs as go
 import pandas as pd
 import numpy as np
 from data import dfs
+from datetime import datetime
 # import redis
 
-dash.register_page(__name__, path='/revenue',name="Revenue")
+dash.register_page(__name__, path='/revenue', name="Revenue")
 
- # Renaming columns for easier access
+# Renaming columns for easier access
 for key in dfs.keys():
-    dfs[key].columns = ["Date", "MID", "Station", "Transaction Type", "Payment Type","Payment Mode","Revenue Type","Equipment ID",
+    dfs[key].columns = ["Date", "MID", "Station", "Transaction Type", "Payment Type", "Payment Mode", "Revenue Type", "Equipment ID",
                         "Transaction Count", "Incoming", "Outgoing", "Revenue"]
+
+today_date = datetime.today().strftime('%Y-%m-%d')
 
 # Converting the 'Date' column to datetime
 for key in dfs.keys():
@@ -21,159 +24,143 @@ for key in dfs.keys():
 
 
 # Define y-axis and x-axis value options
-y_axis_options = ['Incoming', 'Outgoing', 'Revenue',"Transaction Count"]  
-x_axis_options = ['Station',"Transaction Type", "Equipment ID","Payment Type","Payment Mode","Revenue Type"]  
+y_axis_options = ['Incoming', 'Outgoing', 'Revenue', "Transaction Count"]
+x_axis_options = ['Station', "Transaction Type", "Equipment ID",
+                  "Payment Type", "Payment Mode", "Revenue Type"]
 
 # Define app layout
 layout = html.Div([
-    #html.Link(rel='stylesheet', href='/assets/bootstrap.min.css'),
+    # html.Link(rel='stylesheet', href='/assets/bootstrap.min.css'),
     html.Link(rel='stylesheet', href='/assets/ots_styles.css'),
-    #html.Link(rel='stylesheet', href='/assets/s1.css'),
+    # html.Link(rel='stylesheet', href='/assets/s1.css'),
 
-#ROW1
-  dbc.Row([
-        dbc.Col([
-            html.Label('Date Range:')],
-                        className="hstack gap-2 label", width=2
+    # ROW1
+    dbc.Row([
+        dbc.Col(
+            html.Div([
+                html.Label('Date Range', className='custom-label'),
+                dcc.DatePickerRange(
+                    id='date-picker-range',
+                    start_date=today_date,
+                    end_date=today_date,
+                    display_format='YYYY-MM-DD',
+                ),
+            ]),  sm=12, md=6, lg=3,
         ),
-        dbc.Col([            
-            dcc.DatePickerRange(
-                id='date-picker-range',
-                start_date=dfs['Cash']['Date'].min(),
-                end_date=dfs['Cash']['Date'].max(),
-                display_format='YYYY-MM-DD',
-                style={'font-family':'Roboto'}
-            )
-             ],className='hstack', width=4),
-      
-      dbc.Col([ 
-            html.Label('Station:',style={'text-align': 'left', 'color': '#2b3674', 'font-weight': 'bold'})
-            ],className="hstack", width=1
-      ),
-     dbc.Col([ 
-            dcc.Dropdown(
-                id='station-id-dropdown',
-                options=[
-                    {'label': 'All Station', 'value': 'All'}
-                ] + [
-                    {'label': station, 'value': station} for station in dfs['Cash']['Station'].unique()
-                ],
-                value='All',
-                style={'width': '150%','justify-content': 'center','marginRight':'80px','font-family':'Roboto'}
-            ),
-            ],width={'size': 3}, className="hstack gap-2"),
-    ],className='p-2 align-items-center date-range hstack gap-2'),
-    
-#ROW2       
-dbc.Row([
-        dbc.Col([
-            html.Label('Equipment ID:',style={'text-align': 'left', 'color': '#2b3674', 'font-weight': 'bold', 'marginLeft': '24px','marginRight': '10px'
-                                              }),
-        ],className="hstack gap-2", width=1
-      ),
-     dbc.Col([ 
-            dcc.Dropdown(
-                id='equipment-id-dropdown',
-                options=[
-                    {'label': 'All Equipment', 'value': 'All'}
-                ] + [
-                    {'label': equipment_id, 'value': equipment_id} for equipment_id in dfs['Cash']['Equipment ID'].unique()
-                ],
-                value='All',
-                style={'width': '100%','font-family':'Roboto'}
-            ),
-            ],width={'size': 2}, className="hstack gap-2"),
-     
 
-     dbc.Col([
-            html.Label('Payment Category:',style={'text-align': 'left', 'color': '#2b3674', 'font-weight': 'bold', 'marginLeft': '10px'}),
-            ],className="hstack gap-2", width=1
-      ),
-     dbc.Col([ 
-            dcc.Dropdown(
-                id='payment-category-dropdown',
-                options=[
-                    {'label': 'Cash', 'value': 'Cash'},
-                    {'label': 'NonCash', 'value': 'NonCash'},
-                    {'label': 'CashNonCash', 'value': 'CashNonCash'}
-                ],
-                value='CashNonCash',
-                style={'width': '100%','font-family':'Roboto'}
-            ),
-            ],width={'size': 2}, className="hstack gap-2"),
-        
-
-        dbc.Col([
-            html.Label('Transaction Type:',style={'text-align': 'left', 'color': '#2b3674', 'font-weight': 'bold', 'marginLeft': '10px'}),
-            ],className="hstack gap-2", width=1
-      ),
-     dbc.Col([ 
-            dcc.Dropdown(
-                id='transaction-type-dropdown',
-                options=[
-                    {'label': 'All Transaction Types', 'value': 'All'},
-                    {'label': '4-Add Value', 'value': '4-Add Value'},
-                    {'label': '9-Admin Handling', 'value': '9-Admin Handling'}
-                ],
-                value='All',
-                style={'width': '100%','font-family':'Roboto'}
-            ),
-            ],width={'size': 2}, className="hstack gap-2"),
-    
-        ],className='p-2 align-items-center date-range-row2'),
-
-#ROW3
-
-dbc.Row([
-    dbc.Col([
-        html.Label('Select Revenue Type/Count:',style={'text-align': 'left','color': '#2b3674', 'font-weight': 'bold', 'marginLeft': '24px'}),
-        dbc.RadioItems(
-            id='y-axis-radio',
-            className="btn-group",
-            inputClassName="btn-check",
-            labelClassName="btn btn-outline-info",
-            labelCheckedClassName="active",
-            options=[
-                {'label': y_value, 'value': y_value} for y_value in y_axis_options
-            ],
-            value='Revenue'
-            #style={'width': '25%','justify-content': 'center'}
-            #labelStyle={"color": "black"},
-            #inline=True
-            # inputStyle={"background-color": "blue"}
+        dbc.Col(
+            html.Div([
+                html.Label('Station', className='custom-label'),
+                dcc.Dropdown(
+                    id='station-id-dropdown',
+                    options=[
+                        {'label': 'All Station', 'value': 'All'}
+                    ] + [
+                        {'label': station, 'value': station} for station in dfs['Cash']['Station'].unique()
+                    ],
+                    value='All',
+                ),
+            ]),   sm=12, md=6, lg=3,
         ),
-     ],width={'size': 8}, className="hstack gap-2 radio-group"),
-    ],className='p-2 align-items-center date-range-row3'),
 
-dbc.Row([
-     dbc.Col([
-        html.Label('Select Category:',style={'text-align': 'left' ,'color': '#2b3674', 'font-weight': 'bold', 'marginLeft': '24px','marginRight': '93px'}),
-        dbc.RadioItems(
-            id='x-axis-radio',
-            className="btn-group",
-            inputClassName="btn-check",
-            labelClassName="btn btn-outline-info",
-            labelCheckedClassName="active",
-            options=[
-                {'label': x_value, 'value': x_value} for x_value in x_axis_options
-            ],
-            value='Station',
-            labelStyle={'white-space': 'pre-wrap'}
-            #style={'width': '75%','justify-content': 'center'}
-            
+        dbc.Col(
+            html.Div([
+                html.Label('Equipment ID', className='custom-label'),
+                dcc.Dropdown(
+                    id='equipment-id-dropdown',
+                    options=[
+                        {'label': 'All Equipment', 'value': 'All'}
+                    ] + [
+                        {'label': equipment_id, 'value': equipment_id} for equipment_id in dfs['Cash']['Equipment ID'].unique()
+                    ],
+                    value='All',
+                ),
+            ]),  sm=12, md=6, lg=3,
         ),
-        ],width={'size': 10}, className="hstack gap-2 radio-group"),
-        ],className='p-2 align-items-center date-range-row3_2'),
+
+        dbc.Col(
+            html.Div([
+                html.Label('Payment Category', className='custom-label'),
+                dcc.Dropdown(
+                    id='payment-category-dropdown',
+                    options=[
+                        {'label': 'Cash', 'value': 'Cash'},
+                        {'label': 'NonCash', 'value': 'NonCash'},
+                        {'label': 'CashNonCash', 'value': 'CashNonCash'}
+                    ],
+                    value='CashNonCash',
+                ),
+            ]),  sm=12, md=6, lg=3,
+        ),
+
+        dbc.Col(
+            html.Div([
+                html.Label('Transaction Type', className='custom-label'),
+                dcc.Dropdown(
+                    id='transaction-type-dropdown',
+                    options=[
+                        {'label': 'All Transaction Types', 'value': 'All'},
+                        {'label': '4-Add Value', 'value': '4-Add Value'},
+                        {'label': '9-Admin Handling', 'value': '9-Admin Handling'}
+                    ],
+                    value='All',
+                ),
+            ]),  sm=12, md=6, lg=3,
+        ),
+
+    ], className='input-wrapper'),
+
+
+    # ROW2
+
+    dbc.Row([
+        dbc.Col(
+            html.Div([
+                html.Label('Select Revenue Type/Count',
+                           className='custom-label'),
+
+                dbc.RadioItems(
+                    id='y-axis-radio',
+                    labelCheckedClassName="active",
+                    options=[
+                        {'label': y_value, 'value': y_value} for y_value in y_axis_options
+                    ],
+                    value='Revenue'
+                ),
+
+            ]),  sm=12, md=12, lg=6,
+        ),
+
+        dbc.Col(
+            html.Div([
+                html.Label('Select Category',
+                           className='custom-label'),
+
+                dbc.RadioItems(
+                    id='x-axis-radio',
+                    labelCheckedClassName="active",
+                    options=[
+                        {'label': x_value, 'value': x_value} for x_value in x_axis_options
+                    ],
+                    value='Station',
+                ),
+
+            ]),  sm=12, md=12, lg=6,
+        ),
+
+    ], className='input-wrapper'),
 
 
     dcc.Graph(id='revenue-graph',
               config={
-        "displaylogo": False,
-        'modeBarButtonsToRemove': ['pan2d','lasso2d']
-    })
-])
+                  "displaylogo": False,
+                  'modeBarButtonsToRemove': ['pan2d', 'lasso2d']
+              })
+], className='wrapper')
 
 # Define callback to update graph
+
+
 @callback(
     Output('revenue-graph', 'figure'),
     [Input('payment-category-dropdown', 'value'),
@@ -194,7 +181,8 @@ def update_graph(payment_mode, start_date, end_date, equipment_id, selected_stat
     if equipment_id == 'All':
         filtered_df = df[(df['Date'] >= start_date) & (df['Date'] <= end_date)]
     else:
-        filtered_df = df[(df['Date'] >= start_date) & (df['Date'] <= end_date) & (df['Equipment ID'] == equipment_id)]
+        filtered_df = df[(df['Date'] >= start_date) & (
+            df['Date'] <= end_date) & (df['Equipment ID'] == equipment_id)]
 
     if selected_station != 'All':
         filtered_df = filtered_df[filtered_df['Station'] == selected_station]
@@ -202,7 +190,8 @@ def update_graph(payment_mode, start_date, end_date, equipment_id, selected_stat
     if transaction_type != 'all':
         # Convert Transaction Type column to lowercase for case-insensitive comparison
         transaction_type = transaction_type.lower()
-        filtered_df = filtered_df[filtered_df['Transaction Type'].str.lower() == transaction_type]
+        filtered_df = filtered_df[filtered_df['Transaction Type'].str.lower(
+        ) == transaction_type]
 
     fig = go.Figure()
 
@@ -236,8 +225,10 @@ def update_graph(payment_mode, start_date, end_date, equipment_id, selected_stat
             color="black"
         ),
         margin=dict(l=50, r=50, b=50, t=50),
-        xaxis=dict(showline=True, showgrid=False, linecolor='rgb(204, 204, 204)'),
-        yaxis=dict(showline=True, showgrid=False, linecolor='rgb(204, 204, 204)')
+        xaxis=dict(showline=True, showgrid=False,
+                   linecolor='rgb(204, 204, 204)'),
+        yaxis=dict(showline=True, showgrid=False,
+                   linecolor='rgb(204, 204, 204)')
     )
 
     return fig

@@ -39,10 +39,9 @@ SELECT
                                 --JOIN tb_payment_method d ON d.payment_method_id = a.pay_md
                             JOIN tb_emv_payment_type e ON e.payment_type_id = a.pay_md
                         WHERE
-                            --TO_DATE(trx_dt_tm, 'yyyy-mm-dd hh24:mi:ss') = TO_DATE(sysdate, 'yyyy-mm-dd hh24:mi:ss')
-                            --TO_DATE(trx_dt_tm, 'yyyy-mm-dd hh24:mi:ss') BETWEEN TO_DATE('20230914 00:00:00', 'yyyy-mm-dd hh24:mi:ss') AND
-                            --TO_DATE('20230914 23:59:59', 'yyyy-mm-dd hh24:mi:ss')
-                            a.pay_md = 100
+                            TO_DATE(trx_dt_tm, 'yyyy-mm-dd hh24:mi:ss') BETWEEN TO_DATE('20230914 00:00:00', 'yyyy-mm-dd hh24:mi:ss') AND
+                            TO_DATE('20230914 23:59:59', 'yyyy-mm-dd hh24:mi:ss')
+                            AND a.pay_md = 100
                         GROUP BY
                             trunc(TO_DATE(a.trx_dt_tm, 'yyyy-mm-dd hh24:mi:ss')),
                             a.station_id,
@@ -78,10 +77,9 @@ SELECT
                                -- JOIN tb_payment_method d ON d.payment_method_id = a.plt_pay_md
                             JOIN tb_emv_payment_type e ON e.payment_type_id = a.plt_pay_md
                         WHERE
-                            --TO_DATE(trx_dt_tm, 'yyyy-mm-dd hh24:mi:ss') = TO_DATE(sysdate, 'yyyy-mm-dd hh24:mi:ss')
-                            --TO_DATE(trx_dt_tm, 'yyyy-mm-dd hh24:mi:ss') BETWEEN TO_DATE('20230914 00:00:00', 'yyyy-mm-dd hh24:mi:ss') AND
-                            --TO_DATE('20230914 23:59:59', 'yyyy-mm-dd hh24:mi:ss')
-                            plt_pay_md = 100
+                            TO_DATE(trx_dt_tm, 'yyyy-mm-dd hh24:mi:ss') BETWEEN TO_DATE('20230914 00:00:00', 'yyyy-mm-dd hh24:mi:ss') AND
+                            TO_DATE('20230914 23:59:59', 'yyyy-mm-dd hh24:mi:ss')
+                            AND plt_pay_md = 100
                         GROUP BY
                             trunc(TO_DATE(a.trx_dt_tm, 'yyyy-mm-dd hh24:mi:ss')),
                             a.station_id,
@@ -117,9 +115,8 @@ SELECT
                                 m.station_id = b.station_uniqueid
                              --   AND c.product_id = m.card_type
                             AND m.payment_method = p.payment_type_id
-                            --AND TO_DATE(m.trx_dt_tm, 'yyyy-mm-dd hh24:mi:ss') = TO_DATE(sysdate, 'yyyy-mm-dd hh24:mi:ss')
-                            --TO_DATE(m.trx_dt_tm, 'yyyy-mm-dd hh24:mi:ss') BETWEEN TO_DATE('20230914 00:00:00', 'yyyy-mm-dd hh24:mi:ss'
-                            --) AND TO_DATE('20230914 23:59:59', 'yyyy-mm-dd hh24:mi:ss')
+                            AND TO_DATE(m.trx_dt_tm, 'yyyy-mm-dd hh24:mi:ss') BETWEEN TO_DATE('20230914 00:00:00', 'yyyy-mm-dd hh24:mi:ss'
+                            ) AND TO_DATE('20230914 23:59:59', 'yyyy-mm-dd hh24:mi:ss')
                             AND m.trx_type = t.ticket_txn_type_id
                             AND m.payment_method = 100
                         GROUP BY
@@ -157,10 +154,9 @@ SELECT
                             JOIN tb_stations         b ON a.station_id = b.station_uniqueid
                             JOIN tb_emv_payment_type d ON d.payment_type_id = a.payment_mode
                         WHERE
-                            --TO_DATE(transaction_date_time, 'yyyy-mm-dd hh24:mi:ss') = TO_DATE(sysdate, 'yyyy-mm-dd hh24:mi:ss')
-                            --TO_DATE(transaction_date_time, 'yyyy-mm-dd hh24:mi:ss') BETWEEN TO_DATE('20230914 00:00:00', 'yyyy-mm-dd hh24:mi:ss'
-                            --) AND TO_DATE('20230914 23:59:59', 'yyyy-mm-dd hh24:mi:ss')
-                            a.payment_mode = 100
+                            TO_DATE(transaction_date_time, 'yyyy-mm-dd hh24:mi:ss') BETWEEN TO_DATE('20230914 00:00:00', 'yyyy-mm-dd hh24:mi:ss'
+                            ) AND TO_DATE('20230914 23:59:59', 'yyyy-mm-dd hh24:mi:ss')
+                            AND a.payment_mode = 100
                         GROUP BY
                             trunc(TO_DATE(a.transaction_date_time, 'yyyy-mm-dd hh24:mi:ss')),
                             a.station_id,

@@ -2,7 +2,7 @@ SELECT
 --EXIT DATA
     station_id station_details,
     equp_grp_id,
-    equp_id,   
+    equp_id,  
     0          entry_count,
     NULL       AS entry_trx_date,
     nvl(COUNT(trx_id),
@@ -50,7 +50,7 @@ FROM
             crd_bal / 100                                   AS crd_bal,
             paytm_tid,
             paytm_mid,
-            m.insert_date
+            TO_DATE(m.trx_dt_tm, 'yyyy-mm-dd hh24:mi:ss') AS insert_date
         FROM
             tb_emv_trx_gate_exit_tag m,
             tb_stations              b,
@@ -63,7 +63,7 @@ FROM
             AND m.crd_type = c.product_id
             AND m.trx_type = t.ticket_txn_type_id
         ORDER BY
-            m.insert_date DESC
+            m.trx_dt_tm DESC
     )
 GROUP BY (
     station_id,
@@ -138,7 +138,7 @@ FROM
             NULL                                            AS crd_bal,
             '0'                                             AS paytm_tid,
             'LTMetr33790038971459'                          AS paytm_mid,
-            m.insert_date
+            TO_DATE(m.trx_dt_tm, 'yyyy-mm-dd hh24:mi:ss') AS insert_date
         FROM
             tb_emv_trx_gate_entry_tag m,
             tb_stations               b,
@@ -150,7 +150,7 @@ FROM
             --AND m.insert_date BETWEEN TO_DATE('20230914 00:00:00', 'yyyy-mm-dd hh24:mi:ss') AND TO_DATE('20230914 23:59:59', 'yyyy-mm-dd hh24:mi:ss')
             AND m.trx_type = t.ticket_txn_type_id
         ORDER BY
-            m.insert_date DESC
+            m.trx_dt_tm DESC
     )
 GROUP BY (
     station_id,

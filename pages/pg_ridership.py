@@ -5,6 +5,7 @@ import dash_bootstrap_components as dbc
 import plotly.graph_objs as go
 import pandas as pd
 from data import dfr
+from datetime import datetime
 
 dash.register_page(__name__, path='/ridership', name="Ridership")
 
@@ -36,6 +37,7 @@ for key in dfr.keys():
 for key in dfr.keys():
     dfr[key]['Date'] = pd.to_datetime(dfr[key]['Date'])
 
+today_date = datetime.today().strftime('%Y-%m-%d')
 
 
 layout = html.Div([
@@ -48,8 +50,9 @@ layout = html.Div([
         dbc.Col([
             dcc.DatePickerRange(
                 id='date-picker-range',
-                start_date=dfr['Ridership']['Date'].min(),
-                end_date=dfr['Ridership']['Date'].max(),
+                start_date=today_date,
+                # start_date=dfr['Ridership']['Date'].min(),
+                end_date=today_date,
                 display_format='YYYY-MM-DD'
             )
         ], className='hstack', width=4),
@@ -103,11 +106,12 @@ def update_graph(start_date, end_date, selected_station):
         text=y_values,
         textposition='auto',
         hoverinfo='text+name',
-        marker_color=['blue', 'green']
+        marker_color=['blue', 'green'],
+        name='Count'
     ))
 
     fig.update_layout(
-        title=f'Ridership (Count on y-axis)',
+        title=f'Ridership (Entry/Exit Count)',
         xaxis_title='Category',
         yaxis_title='Count',
         bargap=0.2,
