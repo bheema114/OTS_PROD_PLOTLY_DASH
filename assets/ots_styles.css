@@ -1,4 +1,4 @@
-:root{
+:root {
   --primary-color: #33c3f0;
 }
 
@@ -10,6 +10,35 @@ body {
 .wrapper {
   max-width: 1565px;
   margin: 0 auto;
+}
+
+.dashboard-wrapper {
+  display: flex;
+}
+
+.dashboard-icon {
+  width: 36px;
+  margin-right: 16px;
+}
+
+.dashboard-btn {
+  padding: 1em 1.5em;
+  background-color: #ffffff;
+  color: #2b3674;
+  border-radius: 1em;
+  border: 1px solid #bbb;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: Helvetica;
+  font-weight: 700;
+  margin-right: 24px;
+}
+
+.dashboard-btn:hover{
+  color: #FFF;
+  border-color: #888;
+  background: #2D9CDB;
+  outline: 0;
 }
 
 /* Buttons
@@ -34,6 +63,7 @@ input[type="button"] {
   width: 220px;
   height: 60px;
 }
+
 
 .button2,
 button,
@@ -108,7 +138,7 @@ input[type="button"].button-primary:focus {
 }
 
 .Select-control {
-  border: 0.5px solid rgb(85, 69, 208);
+  border: 0.5px solid #d1d1d1;
 }
 
 .has-value.Select--single>.Select-control .Select-value .Select-value-label,
@@ -119,7 +149,7 @@ input[type="button"].button-primary:focus {
 .input-wrapper {
   background-color: #ffffff;
   border-radius: 1em;
-  padding:1em 1em 2em 1em;
+  padding: 1em 1em 2em 1em;
   margin: 1em 0;
 }
 
@@ -240,12 +270,12 @@ input[type="button"].button-primary:focus {
   margin-left: -1px;
 }
 
-.form-check{
+.form-check {
   display: inline-block !important;
-    margin-right: 4rem !important;
+  margin-right: 4rem !important;
 }
 
-.form-check-input{
+.form-check-input {
   border-color: #d1d1d1;
 }
 
